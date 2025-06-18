@@ -1,0 +1,16 @@
+<nav>
+  <a class="brand" routerLink="/">
+    <mat-icon>store</mat-icon>
+    <h2>Store</h2>
+  </a>
+  <ul class="links">
+    <li id="add">
+      <a routerLink="/login" *ngIf="!isLoggedIn()">Login</a>
+     <a *ngIf="isLoggedIn()" (click)="logout()">Logout</a>
+
+    </li>
+    <li id="add">
+      <a routerLink="/user"  *ngIf="isLoggedIn()">Meu Perfil</a>
+    </li>
+  </ul>
+</nav>
