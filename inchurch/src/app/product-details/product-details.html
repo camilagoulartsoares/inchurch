@@ -1,0 +1,59 @@
+<div class="product-details-container">
+  <div class="create-button-wrapper">
+      <button (click)="goToHome()" class="create-button">
+          <mat-icon style="font-size: 18px;">arrow_back</mat-icon>
+          Voltar para o início
+      </button>
+  </div>
+  <div *ngIf="productDetails" class="product-details">
+      <div class="image-container">
+
+          <mat-progress-spinner *ngIf="!imageLoaded" color="accent" mode="indeterminate"></mat-progress-spinner>
+
+          <img [src]="productDetails.thumbnail" class="product-image" (load)="onImageLoad()">
+      </div>
+
+      <div class="details-container">
+          <div class="title-description-container">
+              <div class="title-description-container">
+                  <h2 *ngIf="!isEditingTitle" class="product-title">{{ productDetails.title }}</h2>
+                  <!-- <input *ngIf="isEditingTitle" [(ngModel)]="editedTitle" class="product-title-input">
+                  <button *ngIf="!isEditingTitle" (click)="enableEditingTitle()" class="edit-button">Editar
+                      Título</button>
+                  <button *ngIf="isEditingTitle" (click)="saveTitle()" class="save-button">Salvar</button>
+                  <button *ngIf="isEditingTitle" (click)="cancelEditTitle()" class="cancel-button">Cancelar</button> -->
+                  <button (click)="openEditModal()" class="edit-button">Editar</button>
+
+              </div>
+
+          </div>
+          <p class="product-description">{{ productDetails.description }}</p>
+          <div class="product-info">
+              <div class="info-item">
+                  <p class="info-label">Preço:</p>
+                  <p class="info-value">$ {{ productDetails.price }}</p>
+              </div>
+              <div class="info-item">
+                  <p class="info-label">Quantidade em Estoque:</p>
+                  <p class="info-value">{{ productDetails.stock }}</p>
+              </div>
+              <div class="info-item">
+                  <p class="info-label">Desconto:</p>
+                  <p class="info-value">{{ productDetails.discountPercentage }}%</p>
+              </div>
+              <div class="info-item">
+                  <p class="info-label">Avaliação:</p>
+                  <p class="info-value">{{ productDetails.rating }}</p>
+              </div>
+              <div class="info-item">
+                  <p class="info-label">Marca:</p>
+                  <p class="info-value">{{ productDetails.brand }}</p>
+              </div>
+              <div class="info-item">
+                  <p class="info-label">Categoria:</p>
+                  <p class="info-value">{{ productDetails.category }}</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
