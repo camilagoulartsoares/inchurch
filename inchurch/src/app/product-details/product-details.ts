@@ -6,10 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../login/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
-  imports: [MatProgressSpinnerModule,MatIconModule],
+  imports: [MatProgressSpinnerModule,MatIconModule,CommonModule],
   templateUrl: './product-details.html',
   styleUrl: './product-details.css'
 })
