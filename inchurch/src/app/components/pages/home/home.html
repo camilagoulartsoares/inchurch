@@ -1,0 +1,87 @@
+<div class="filters-container">
+  <div class="filters-left">
+    <div class="search-bar-wrapper">
+      <input type="text" [(ngModel)]="searchTerm" (input)="filterProducts()" placeholder="Pesquise...">
+    </div>
+    <div class="select-wrapper">
+      <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
+        <option value="">Filtrar por categoria</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+    <div class="select-wrapper">
+      <select [(ngModel)]="selectedBrand" (change)="filterProducts()">
+        <option value="">Filtrar por marca</option>
+        <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="create-button-wrapper">
+    <button (click)="redirectTo('/post')" class="create-button">
+      <mat-icon style="font-size: 22px;">add_circle_outline</mat-icon>
+      Adicionar Novo Produto
+    </button>
+  </div>
+</div>
+
+
+<div *ngIf="produtosCarregados && paginatedProducts.length > 0; else noProducts">
+  <div class="position">
+    <div class="product-grid">
+      <div class="card product-card" *ngFor="let product of paginatedProducts" (click)="goToProductDetails(product.id)">
+        <img [src]="product.images[0]" alt="Product Image" class="product-image">
+        <div class="card-body">
+          <h3 class="card-title">{{ product.title }}</h3>
+          <p class="card-text">Price: {{ product.price }}</p>
+          <div class="button-container">
+            <button type="button" (click)="deleteProduct($event, product.id)" class="btn-delete">Deletar</button>
+            <button (click)="addToCart($event,product.id)" class="btn-add-to-cart">Adicionar ao carrinho</button>
+
+            <button class="btn-details" (click)="goToProductDetails(product.id)">Detalhes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu" [ngClass]="{'open': isMenuOpen}">
+    <button (click)="toggleMenu()" class="close-button">Fechar</button>
+    <ul>
+      <li *ngFor="let product of cart" class="product-card-cart">
+        <div class="product-info-cart ">
+          <img [src]="product.images[0]" alt="Imagem do Produto" class="product-image-cart">
+          <div class="product-details-cart">
+            <h3>{{ product.title }}</h3>
+            <p>Marca: {{ product.brand }}</p>
+            <p>Preço: {{ product.price }}</p>
+            <p>Quantidade: {{ product.quantity }}</p>
+          </div>
+        </div>
+        <div class="product-actions">
+          <button (click)="increaseQuantity(product.id)">+</button>
+          <button (click)="decreaseQuantity(product.id)">-</button>
+          <button (click)="removeFromCart(product.id)">Remover</button>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+
+
+  <div class="pagination"  *ngIf="totalPages > 1">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
+      <i class="material-icons">chevron_left</i>Anterior
+    </button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Próximo   <i class="material-icons">chevron_right</i>
+    </button>
+  </div>
+
+</div>
+
+<ng-template #noProducts>
+     <div *ngIf="!paginatedProducts.length && filteredProducts.length === 0">
+      <p>Nenhum produto encontrado.</p>
+    </div>
+</ng-template>
+
