@@ -1,0 +1,58 @@
+.profile-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px 0;
+}
+
+.profile-info {
+  margin-bottom: 10px;
+}
+
+.profile-info strong {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.profile-info span {
+  color: #333;
+}
+
+
+
+.search-bar-wrapper input,
+.select-wrapper select,
+.create-button {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+input,
+select,
+.create-button {
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+
+
+.create-button {
+  background-color: #a0a6aa;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: #83888c;
+}
+
+.create-button mat-icon {
+  color: #fff;
+
+  background: transparent;
+}

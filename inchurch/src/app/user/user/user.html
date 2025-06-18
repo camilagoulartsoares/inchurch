@@ -1,0 +1,19 @@
+<button (click)="redirectTo('/')" class="create-button">
+  <mat-icon style="font-size: 20px;">keyboard_arrow_left</mat-icon>
+  Voltar para o início
+</button>
+
+<div *ngIf="loading; else userDataContent" class="loader">
+  Carregando...
+</div>
+
+<ng-template #userDataContent>
+  <div class="profile-container">
+    <h2>Informações do Perfil</h2>
+    <p class="profile-info"><strong>Nome:</strong> <span>{{ userData.firstName }} {{userData.maidenName}}
+        {{userData.lastName}}</span></p>
+    <p class="profile-info"><strong>Email:</strong> <span>{{ userData.email }}</span></p>
+    <p class="profile-info"><strong>Nascimento:</strong> <span>{{ userData.birthDate }}</span></p>
+    <p class="profile-info"><strong>Universidade:</strong> <span>{{ userData.university }}</span></p>
+  </div>
+</ng-template>
